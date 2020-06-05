@@ -1,5 +1,5 @@
-import React,{Component} from 'react';
-import SearchBar from './SearchBar';
+import React,{Component} from 'react'
+import SearchBar from './SearchBar'
 import  {search,update} from './BooksAPI' 
 import Book from './Book'
 
