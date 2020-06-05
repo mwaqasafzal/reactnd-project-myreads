@@ -9,6 +9,7 @@ const BookShelf=props=>{
                 <ol className="books-grid">
                     {props.books.map(book=>(<Book 
                                             changeBookShelf={props.changeBookShelf}
+                                            shelf={book.shelf}
                                             key={book.id}
                                             bookId={book.id}
                                             imageLink={book.imageLinks.thumbnail} 
