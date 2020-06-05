@@ -12,12 +12,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount(){
-    BooksAPI.getAll()
-            .then(books=>{
-              this.setState({
-                books
-              })
-            });        
+   this.getAllBooks();    
   }
 
   changeBookShelf=bookData=>{
@@ -40,6 +35,14 @@ class BooksApp extends React.Component {
         });
   }
   
+  getAllBooks=()=>{
+    BooksAPI.getAll()
+    .then(books=>{
+      this.setState({
+        books
+      })
+    });    
+  }
 
   render() {
     return (
@@ -49,7 +52,7 @@ class BooksApp extends React.Component {
                                               books={this.state.books} 
                                               changeBookShelf={this.changeBookShelf}/>)}/>
        
-        <Route path="/search" component={props=><SearchBook selectedBooks={this.state.books} changeBookShelf={this.changeBookShelf}/>}/>
+        <Route path="/search" component={props=><SearchBook {...props} selectedBooks={this.state.books} updateShelves={this.getAllBooks}/>}/>
       </div>
     )
   }

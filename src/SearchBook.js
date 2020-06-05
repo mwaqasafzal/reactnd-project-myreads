@@ -75,7 +75,8 @@ class SearchBook extends Component{
   render(){
     return(
       <div className="search-books">
-             <SearchBar bookSearchHandler={this.bookSearchHandler}/>
+             <SearchBar bookSearchHandler={this.bookSearchHandler}
+                        updateShelves={this.props.updateShelves}/>
               <div className="search-books-results">
                 <ol className="books-grid">
                   {this.state.books.map(book=>(<Book

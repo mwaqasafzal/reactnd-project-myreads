@@ -1,7 +1,6 @@
-import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
+import React,{Component} from 'react'
 import {debounce} from 'throttle-debounce'
-
+import {withRouter} from 'react-router-dom' //hoc that will put special props[e.g history etc] on SearchBar
 class SearchBar extends Component{
     constructor(props){
         super(props);
@@ -28,10 +27,11 @@ class SearchBar extends Component{
     render(){
         return(
             <div className="search-books-bar">
-            <Link 
-                className="close-search"
-                to="/">Close
-            </Link>
+            <button onClick={()=>{
+                                    this.props.updateShelves();
+                                    this.props.history.push('/');
+                                }}
+                    className="close-search"></button>
             
             <div className="search-books-input-wrapper">
               <input type="text" 
@@ -45,4 +45,4 @@ class SearchBar extends Component{
     }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);
