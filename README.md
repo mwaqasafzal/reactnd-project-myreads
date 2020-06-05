@@ -10,5 +10,9 @@ Simply clone this repository
 i.e https://github.com/mwaqasafzal/reactnd-project-myreads.git
 
 open it in your favourite ide
+
+
 run `npm install` (i assumed you have node.js and npm installed on your system)
+
+
 run `npm start`
