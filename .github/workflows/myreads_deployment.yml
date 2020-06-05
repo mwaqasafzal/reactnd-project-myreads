@@ -29,7 +29,7 @@ jobs:
       run: npm i
     
     - name: Build react app
-      run: npm build
+      run: npm run build
     
     - name: Install surge
       run: npm i -g surge
