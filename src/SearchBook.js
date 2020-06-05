@@ -8,11 +8,6 @@ class SearchBook extends Component{
     books:[]
   }
 
-  //everytime this.state will be updated(based upon search) this method will be invoked
-  //therefore calling search from booksAPI over here
-  componentDidUpdate(){
-    
-  }
 
   //bookData->{id:---,shelf:---}
   changeBookShelf=(bookData)=>{
@@ -38,6 +33,7 @@ class SearchBook extends Component{
               books
             })
           })
+
   }
 
     //this method will update the state based upon the input to search box

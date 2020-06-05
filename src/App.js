@@ -4,6 +4,7 @@ import ListBooks from './ListBooks';
 import SearchBook from './SearchBook';
 import './App.css'
 import {Route} from 'react-router-dom'
+import {update} from './BooksAPI';
 
 class BooksApp extends React.Component {
   state = {
@@ -16,23 +17,29 @@ class BooksApp extends React.Component {
               this.setState({
                 books
               })
-            })           
+            });        
   }
 
   changeBookShelf=bookData=>{
-    const books=[...this.state.books];
-    for(let book of books)
-      if(book.id===bookData.id){
-        book.shelf=bookData.shelf;
-        break;
-      }
-    
-    this.setState({
-      books
-    })
-        
+    let books;
+    update(bookData,bookData.shelf) //as update requires book{object}..will take id out of it and shelf
+        .then(res=>{
+          books=[...this.state.books];
+          for(let i=0;i<books.length;i++)
+            if(books[i].id===bookData.id){
+              if(bookData.shelf==="none")
+                books.splice(i,1);
+              else
+                books[i].shelf=bookData.shelf;
+              break;
+            }
 
+          this.setState({
+            books
+          });
+        });
   }
+  
 
   render() {
     return (
@@ -42,7 +49,7 @@ class BooksApp extends React.Component {
                                               books={this.state.books} 
                                               changeBookShelf={this.changeBookShelf}/>)}/>
        
-        <Route path="/search" component={props=><SearchBook selectedBooks={this.state.books}/>}/>
+        <Route path="/search" component={props=><SearchBook selectedBooks={this.state.books} changeBookShelf={this.changeBookShelf}/>}/>
       </div>
     )
   }
